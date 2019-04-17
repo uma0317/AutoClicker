@@ -1,0 +1,30 @@
+
+sendevent /dev/input/event2 3 57 386
+sendevent /dev/input/event2 3 53 3293
+sendevent /dev/input/event2 3 54 1190
+sendevent /dev/input/event2 3 48 6
+sendevent /dev/input/event2 3 58 292
+sendevent /dev/input/event2 1 330 1
+sendevent /dev/input/event2 3 0 3293
+sendevent /dev/input/event2 3 1 1190
+sendevent /dev/input/event2 3 24 292
+sendevent /dev/input/event2 0 0 0
+sendevent /dev/input/event2 3 58 296
+sendevent /dev/input/event2 3 24 296
+sendevent /dev/input/event2 0 0 0
+sendevent /dev/input/event2 3 58 276
+sendevent /dev/input/event2 3 24 276
+sendevent /dev/input/event2 0 0 0
+sendevent /dev/input/event2 3 53 3291
+sendevent /dev/input/event2 3 54 1198
+sendevent /dev/input/event2 3 48 3
+sendevent /dev/input/event2 3 58 196
+sendevent /dev/input/event2 3 0 3291
+sendevent /dev/input/event2 3 1 1198
+sendevent /dev/input/event2 3 24 196
+sendevent /dev/input/event2 0 0 0
+sendevent /dev/input/event2 3 57 4294967295
+sendevent /dev/input/event2 1 330 0
+sendevent /dev/input/event2 3 24 0
+sendevent /dev/input/event2 0 0 0
+
