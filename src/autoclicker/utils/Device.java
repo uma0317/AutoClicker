@@ -15,14 +15,11 @@ import java.io.Serializable;
 public class Device implements Serializable{
     public MyTime[] times;
     public String   deviceName;
-    public String   registerName;
     public String   ip;
     public boolean  isActive;
     public int      execTimes;
-    public Device(String deviceName, String registerName, String ip) {
+    public Device(String deviceName) {
         this.deviceName   = deviceName;
-        this.registerName = registerName;
-        this.ip           = ip;
         times             = null;
         isActive          = false;
         execTimes         = 15;

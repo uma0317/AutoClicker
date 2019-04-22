@@ -48,7 +48,7 @@ public class MainPanel extends JPanel implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent event) {
-        String deviceName, registerName, ip;
+        String deviceName;
         
         if(deviceList.isSelectionEmpty()) {
             JOptionPane.showMessageDialog(null, "端末を選択してください");
@@ -56,10 +56,8 @@ public class MainPanel extends JPanel implements ActionListener{
         }
         
         deviceName   = (String)deviceList.getSelectedValue();
-        registerName = dataPanel.getRegisterName();
-        ip           = dataPanel.getIP();
         
-        Device device = new Device(deviceName, registerName, ip);
+        Device device = new Device(deviceName);
         
         Utils.saveDevice(device);
     }

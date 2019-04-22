@@ -40,7 +40,7 @@ public class MainPanel extends JPanel implements ActionListener {
     public MainPanel() {
         registerButton  = new JButton("端末登録");
         recordButton    = new JButton("操作記録");
-        updateButton    = new JButton("端末情報更新");
+        updateButton    = new JButton("端末削除");
         schedulerButton = new JButton("管理");
         devices         = Utils.getDeviceFromFile();
         
