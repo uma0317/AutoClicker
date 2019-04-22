@@ -25,8 +25,6 @@ public class MainFrame extends JFrame{
         
         System.out.println("Start adb Server: " + result.code);
         System.out.println(result.result);
-        System.out.println("TCP IP: " + result2.code);
-        System.out.println(result2.result);
     }
     
     public static void main(String[] args) {

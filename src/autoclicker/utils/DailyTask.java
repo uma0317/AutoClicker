@@ -10,7 +10,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Timer;
@@ -32,11 +31,6 @@ public class DailyTask extends TimerTask{
     @Override
     public void run() {
         for (Device device: devices) {
-            ProcessResults connectPsResults = ProcessExecuter.exec("./adb.exe", "connect", device.ip);
-            System.out.println(connectPsResults.result.split(" ")[0]);
-            if (connectPsResults.result.split(" ")[0].equals("connected") || connectPsResults.result.split(" ")[0].equals("already")) {
-            }
-            System.out.println(connectPsResults.result);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 //            Timer timer = new Timer(false);
             LocalDateTime d = LocalDateTime.now();

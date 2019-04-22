@@ -21,21 +21,10 @@ public class JobTask extends TimerTask {
     }
     public void run() {
         System.out.println("実行");
-        try {
-            Process connectPs = new ProcessBuilder("./adb.exe", "connect", device.ip).start();
-            connectPs.waitFor();
-            if(connectPs.exitValue() == 0) {
-                System.out.println("connected: " + device.ip);
-            }
-            connectPs.destroy();
-
-            ProcessResults macroExecPsResults = ProcessExecuter.exec("./adb.exe", "-s", device.deviceName, "shell", "sh", "/sdcard/" + device.deviceName + ".txt");
-            System.out.println(macroExecPsResults.result);
-        } catch (InterruptedException ex) {
-            ex.printStackTrace();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        
+        ProcessResults macroExecPsResults = ProcessExecuter.exec("./adb.exe", "-s", device.deviceName, "shell", "sh", "/sdcard/" + device.deviceName + ".txt");
+        System.out.println(macroExecPsResults.result);
+ 
         System.out.println("完了");
     }
 }

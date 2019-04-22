@@ -5,7 +5,6 @@
  */
 package autoclicker.DeviceInfo;
 
-import autoclicker.utils.Adb;
 import autoclicker.utils.Device;
 import autoclicker.utils.Utils;
 import java.awt.BorderLayout;
@@ -17,7 +16,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.BoxLayout;
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -104,6 +102,7 @@ class ListAndInfoPanel extends JPanel {
         return infoPanel.ipRow.field.getText();
     }
 }
+
 class Rows extends JPanel {
     DeviceNameRow deviceNameRow;
     Row           registerNameRow, ipRow;
@@ -120,6 +119,7 @@ class Rows extends JPanel {
         add(ipRow);
     }
 }
+
 class DeviceNameRow extends JPanel {
     JLabel label;
     JLabel deviceNameLabel;

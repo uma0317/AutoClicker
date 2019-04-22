@@ -6,8 +6,6 @@
 package autoclicker.utils;
 
 import autoclicker.MainPanel;
-import java.util.ArrayList;
-import java.util.Timer;
 import java.util.TimerTask;
 
 /**

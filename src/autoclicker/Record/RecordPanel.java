@@ -91,34 +91,16 @@ public class RecordPanel extends JPanel implements ActionListener{
             remove(recordButton);
             add(stopButton, BorderLayout.SOUTH);
         } else {
-//            try {
-//                Process process = new ProcessBuilder("./adb.exe", "disconnect", device.ip).start();
-//                process.waitFor();
-//                process.destroy();
-//
-//                System.out.println("disconnect: " + process.exitValue());
-//                Process connectPs = new ProcessBuilder("./adb.exe", "connect", device.ip).start();
-//                connectPs.waitFor();
-//                if(connectPs.exitValue() == 0) {
-//                    System.out.println("connected: " + device.ip);
-//                }
-//                connectPs.destroy();
-                ProcessResults getPsNumResults = ProcessExecuter.exec("./adb.exe", "-s", device.deviceName, "shell", "ps", "|", "grep", "getevent");
-                Pattern p = Pattern.compile("[0-9]+");
-                Matcher m = p.matcher(getPsNumResults.result);
-                if(m.find()) {
-                    String psNum = m.group();
-                    System.out.println(psNum);
-                    ProcessResults killPsResults = ProcessExecuter.exec("./adb.exe", "-s", device.deviceName, "shell", "kill", psNum);
-                    ProcessResults pushPsResults = ProcessExecuter.exec("./adb.exe", "-s", device.deviceName, "push", "records/" + device.deviceName + ".txt", "/sdcard/" + device.deviceName + ".txt");
-                    System.out.println("psuh: " + pushPsResults.result);  
-                }
-
-//            } catch (InterruptedException ex) {
-//                Logger.getLogger(RecordPanel.class.getName()).log(Level.SEVERE, null, ex);
-//            } catch (IOException ex) {
-//                Logger.getLogger(RecordPanel.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+            ProcessResults getPsNumResults = ProcessExecuter.exec("./adb.exe", "-s", device.deviceName, "shell", "ps", "|", "grep", "getevent");
+            Pattern p = Pattern.compile("[0-9]+");
+            Matcher m = p.matcher(getPsNumResults.result);
+            if(m.find()) {
+                String psNum = m.group();
+                System.out.println(psNum);
+                ProcessResults killPsResults = ProcessExecuter.exec("./adb.exe", "-s", device.deviceName, "shell", "kill", psNum);
+                ProcessResults pushPsResults = ProcessExecuter.exec("./adb.exe", "-s", device.deviceName, "push", "records/" + device.deviceName + ".txt", "/sdcard/" + device.deviceName + ".txt");
+                System.out.println("psuh: " + pushPsResults.result);  
+            }
             remove(stopButton);
             add(recordButton, BorderLayout.SOUTH);
         }
@@ -142,13 +124,6 @@ class GetEventThread extends Thread {
     public void run() {
         System.out.println("start");
         try {
-//            Process connectPs = new ProcessBuilder("./adb.exe", "connect", device.ip).start();
-//            connectPs.waitFor();
-//            if(connectPs.exitValue() == 0) {
-//                System.out.println("connected: " + device.ip);
-//            }
-//            connectPs.destroy();
-            
             int           exitCode = 1;
             StringBuilder builder  = new StringBuilder();
 

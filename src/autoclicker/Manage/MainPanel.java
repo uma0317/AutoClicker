@@ -88,22 +88,14 @@ class ListAndInfoPanel extends JPanel {
                 String deviceName = (String)deviceList.getSelectedValue();
                 selectedDevice    = devices.get(deviceName);
                 
-                if (Adb.isConnected(selectedDevice)) {
-                    infoPanel.connectRow.label.setText("接続済み");
-                } else {
-                    infoPanel.connectRow.label.setText("未接続");
-                }
-                
                 remove(infoPanel);
                 infoPanel = new Rows(lp);
                 add(infoPanel, BorderLayout.CENTER);
                 revalidate();
                 repaint();
+                
                 if (selectedDevice.times == null) {
-//                        for(TimeRow timeRow: infoPanel.timeRows.timeRows) {
-//                            timeRow.hoursCombo.setSelectedIndex(0);
-//                            timeRow.minutesCombo.setSelectedIndex(0);
-//                        }
+
                 } else {
                     
                     for (int i = 0; i < selectedDevice.execTimes; i++) {
@@ -197,19 +189,13 @@ class TimeRowsPanel extends JPanel {
 class ConnectRow extends JPanel implements ActionListener{
     JComboBox        timesCombo = new JComboBox<>();
     ListAndInfoPanel lp;
-    JLabel           label;
-    JButton          connectButton;
-    JLabel           label2;
+    JLabel           execLabel;
     JButton          updateButton;
     
     public ConnectRow(ListAndInfoPanel lp) {
         this.lp = lp;
-        label   = new JLabel();
         
-        connectButton = new JButton("接続");
-        connectButton.addActionListener(this);
-
-        label2 = new JLabel("実行回数");
+        execLabel = new JLabel("実行回数");
         for (int i = 0; i < 99; i++) {
             timesCombo.addItem(i);
         }
@@ -217,36 +203,17 @@ class ConnectRow extends JPanel implements ActionListener{
         updateButton = new JButton("更新");
         updateButton.addActionListener(this);
         
-        add(label);
-        add(connectButton);
-        add(label2);
+        add(execLabel);
         add(timesCombo);
         add(updateButton);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == connectButton) {
-            if(lp.selectedDevice == null) {
-                JOptionPane.showMessageDialog(null, "端末を選択してください");
-                return;
-            }
-            
-            ProcessResults connectPsResults = ProcessExecuter.exec("./adb.exe", "connect", lp.selectedDevice.ip);
-            System.out.println(connectPsResults.result.split(" ")[0]);
-            
-            if (Adb.isConnected(lp.selectedDevice)) {
-                label.setText("接続済み");
-            }
-            
-            System.out.println(connectPsResults.result);
-        } else {
-            MyTime[] myTimes = lp.getTimes();
-            
-            lp.selectedDevice.times = myTimes;
-            lp.updateInfoPanel((int)timesCombo.getSelectedItem());
-        }
+        MyTime[] myTimes = lp.getTimes();
 
+        lp.selectedDevice.times = myTimes;
+        lp.updateInfoPanel((int)timesCombo.getSelectedItem());
     }
 }
 
@@ -334,21 +301,9 @@ class ButtonRow extends JPanel implements ActionListener{
             String deviceName = (String) this.lp.deviceList.getSelectedValue();
             Device device     = this.lp.devices.get(deviceName);
             
-            try {
-                Process connectPs = new ProcessBuilder("./adb.exe", "connect", device.ip).start();
-                connectPs.waitFor();
-                if(connectPs.exitValue() == 0) {
-                    System.out.println("connected: " + device.ip);
-                }
-                connectPs.destroy();
-                
-                ProcessResults macroExecPsResults = ProcessExecuter.exec("./adb.exe", "-s", device.deviceName, "shell", "sh", "/sdcard/" + device.deviceName + ".txt");
-                System.out.println(macroExecPsResults.result);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(ButtonRow.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(ButtonRow.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            ProcessResults macroExecPsResults = ProcessExecuter.exec("./adb.exe", "-s", device.deviceName, "shell", "sh", "/sdcard/" + device.deviceName + ".txt");
+            System.out.println(macroExecPsResults.result);
+
         } else if(e.getSource() == saveButton) {
             MyTime[] myTimes    = lp.getTimes();
             String   deviceName = (String) this.lp.deviceList.getSelectedValue();

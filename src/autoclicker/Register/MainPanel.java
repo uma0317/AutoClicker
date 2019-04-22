@@ -8,19 +8,14 @@ package autoclicker.Register;
 import autoclicker.Components.DataPanel;
 import autoclicker.utils.Adb;
 import autoclicker.utils.Device;
-import autoclicker.utils.ProcessResults;
 import autoclicker.utils.Utils;
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
 /**
@@ -64,8 +59,7 @@ public class MainPanel extends JPanel implements ActionListener{
         registerName = dataPanel.getRegisterName();
         ip           = dataPanel.getIP();
         
-        ProcessResults p     = Adb.connect(ip);
-        Device        device = new Device(deviceName, registerName, ip);
+        Device device = new Device(deviceName, registerName, ip);
         
         Utils.saveDevice(device);
     }
