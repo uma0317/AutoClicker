@@ -113,9 +113,12 @@ public class MainPanel extends JPanel implements ActionListener {
         String    monthStr, dayStr, hourStr, minutesStr;
         
         for (Device device: devices) {
-            if (device.times == null) {
+
+            if (device.times.length == 0) {
                 continue;
             }
+
+
             for (MyTime time: device.times) {
                 timer2  = new Timer(false);
                 task2   = new JobTask(device);

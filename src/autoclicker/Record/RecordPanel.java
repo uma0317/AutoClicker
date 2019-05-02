@@ -91,14 +91,14 @@ public class RecordPanel extends JPanel implements ActionListener{
             remove(recordButton);
             add(stopButton, BorderLayout.SOUTH);
         } else {
-            ProcessResults getPsNumResults = ProcessExecuter.exec("./adb.exe", "-s", device.deviceName, "shell", "ps", "|", "grep", "getevent");
+            ProcessResults getPsNumResults = ProcessExecuter.exec(Adb.DEBUG_BIN_PATH, "-s", device.deviceName, "shell", "ps", "|", "grep", "getevent");
             Pattern p = Pattern.compile("[0-9]+");
             Matcher m = p.matcher(getPsNumResults.result);
             if(m.find()) {
                 String psNum = m.group();
                 System.out.println(psNum);
-                ProcessResults killPsResults = ProcessExecuter.exec("./adb.exe", "-s", device.deviceName, "shell", "kill", psNum);
-                ProcessResults pushPsResults = ProcessExecuter.exec("./adb.exe", "-s", device.deviceName, "push", "records/" + device.deviceName + ".txt", "/sdcard/" + device.deviceName + ".txt");
+                ProcessResults killPsResults = ProcessExecuter.exec(Adb.DEBUG_BIN_PATH, "-s", device.deviceName, "shell", "kill", psNum);
+                ProcessResults pushPsResults = ProcessExecuter.exec(Adb.DEBUG_BIN_PATH, "-s", device.deviceName, "push", "records/" + device.deviceName + ".txt", "/sdcard/" + device.deviceName + ".txt");
                 System.out.println("psuh: " + pushPsResults.result);  
             }
             remove(stopButton);
@@ -128,7 +128,7 @@ class GetEventThread extends Thread {
             StringBuilder builder  = new StringBuilder();
 
             for (int i = 0; i < 10 && exitCode == 1; i++) {
-                process = new ProcessBuilder("./adb.exe", "-s", device.deviceName, "shell", "getevent").start();
+                process = new ProcessBuilder(Adb.DEBUG_BIN_PATH, "-s", device.deviceName, "shell", "getevent").start();
                 isr    = new InputStreamReader(process.getInputStream(), "UTF-8");
                 reader = new BufferedReader(isr);
                 builder = new StringBuilder();

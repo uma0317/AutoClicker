@@ -301,7 +301,7 @@ class ButtonRow extends JPanel implements ActionListener{
             String deviceName = (String) this.lp.deviceList.getSelectedValue();
             Device device     = this.lp.devices.get(deviceName);
             
-            ProcessResults macroExecPsResults = ProcessExecuter.exec("./adb.exe", "-s", device.deviceName, "shell", "sh", "/sdcard/" + device.deviceName + ".txt");
+            ProcessResults macroExecPsResults = ProcessExecuter.exec(Adb.DEBUG_BIN_PATH, "-s", device.deviceName, "shell", "sh", "/sdcard/" + device.deviceName + ".txt");
             System.out.println(macroExecPsResults.result);
 
         } else if(e.getSource() == saveButton) {

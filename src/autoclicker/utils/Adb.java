@@ -13,10 +13,10 @@ import java.util.ArrayList;
  */
 public class Adb {
     public static final String BIN_PATH = "./adb.exe";
-    
+    public static final String DEBUG_BIN_PATH = "/Users/yama/Library/Android/sdk/platform-tools/adb";
     public static String[] devices() {
         ArrayList<String> devices   = new ArrayList<>();
-        ProcessResults    psResults = ProcessExecuter.exec(BIN_PATH, "devices");
+        ProcessResults    psResults = ProcessExecuter.exec(DEBUG_BIN_PATH, "devices");
         
         for(String row: psResults.result.split("\n")) {
             String[] datas = row.split("\t");
@@ -30,15 +30,15 @@ public class Adb {
     }
     
     public static ProcessResults connect(String ip) {
-        return ProcessExecuter.exec(BIN_PATH, "connect", ip);
+        return ProcessExecuter.exec(DEBUG_BIN_PATH, "connect", ip);
     }
     
     public static ProcessResults getevent() {
-        return ProcessExecuter.exec(BIN_PATH, "getevent");
+        return ProcessExecuter.exec(DEBUG_BIN_PATH, "getevent");
     }
     
     public static boolean isConnected(Device device) {
-        ProcessResults psResults = ProcessExecuter.exec(BIN_PATH, "devices");
+        ProcessResults psResults = ProcessExecuter.exec(DEBUG_BIN_PATH, "devices");
         
         for(String row: psResults.result.split("\n")) {
             String[] datas = row.split("\t");

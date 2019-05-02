@@ -22,7 +22,7 @@ public class JobTask extends TimerTask {
     public void run() {
         System.out.println("実行");
         
-        ProcessResults macroExecPsResults = ProcessExecuter.exec("./adb.exe", "-s", device.deviceName, "shell", "sh", "/sdcard/" + device.deviceName + ".txt");
+        ProcessResults macroExecPsResults = ProcessExecuter.exec(Adb.DEBUG_BIN_PATH, "-s", device.deviceName, "shell", "sh", "/sdcard/" + device.deviceName + ".txt");
         System.out.println(macroExecPsResults.result);
  
         System.out.println("完了");

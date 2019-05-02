@@ -59,9 +59,9 @@ public class Utils {
                 
                 objInStream.close();
             } catch (IOException ex) {
-                Logger.getLogger(RecordPanel.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex);
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(RecordPanel.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex);
             }
             
             devices.add(device);

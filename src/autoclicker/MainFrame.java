@@ -5,6 +5,7 @@
  */
 package autoclicker;
 
+import autoclicker.utils.Adb;
 import autoclicker.utils.ProcessExecuter;
 import autoclicker.utils.ProcessResults;
 import java.awt.BorderLayout;
@@ -20,8 +21,8 @@ public class MainFrame extends JFrame{
         super(name);
         setSize(500, 500);
 //        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ProcessResults result = ProcessExecuter.exec("./adb.exe", "start-server");
-        ProcessResults result2 = ProcessExecuter.exec("./adb.exe", "tcpip", "5555");
+        ProcessResults result = ProcessExecuter.exec(Adb.DEBUG_BIN_PATH, "start-server");
+        ProcessResults result2 = ProcessExecuter.exec(Adb.DEBUG_BIN_PATH, "tcpip", "5555");
         
         System.out.println("Start adb Server: " + result.code);
         System.out.println(result.result);
@@ -36,7 +37,7 @@ public class MainFrame extends JFrame{
         
         mainFrame.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(WindowEvent winEvt) {
-                ProcessResults result = ProcessExecuter.exec("./adb.exe", "kill-server");
+                ProcessResults result = ProcessExecuter.exec(Adb.DEBUG_BIN_PATH, "kill-server");
                 System.out.println("Kill Server: " + result.code);
                 System.out.println(result.result);
                 System.exit(0);

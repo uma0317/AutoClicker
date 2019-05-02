@@ -1,0 +1,7 @@
+autoclicker.DeviceInfo.ListAndInfoPanel$1
+autoclicker.DeviceInfo.ListAndInfoPanel
+autoclicker.DeviceInfo.Row
+autoclicker.DeviceInfo.ButtonRow
+autoclicker.DeviceInfo.MainPanel
+autoclicker.DeviceInfo.DeviceNameRow
+autoclicker.DeviceInfo.Rows

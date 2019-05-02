@@ -20,7 +20,7 @@ public class Device implements Serializable{
     public int      execTimes;
     public Device(String deviceName) {
         this.deviceName   = deviceName;
-        times             = null;
+        times             = new MyTime[0];
         isActive          = false;
         execTimes         = 15;
     }
